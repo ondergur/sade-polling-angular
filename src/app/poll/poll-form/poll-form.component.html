@@ -1,0 +1,64 @@
+<mat-card>
+  <form [formGroup]=pollForm (submit)="submitPoll()">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Anket İsmi</mat-label>
+      <input
+        id="name"
+        matInput
+        formControlName="name"
+        required>
+        <mat-error *ngIf="!!pollForm.controls.name">Please enter a poll name!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Anket Açıklaması</mat-label>
+      <textarea
+        rows="4"
+        matInput
+        formControlName="explanation"
+        required>
+      </textarea>
+      <mat-error *ngIf="!!pollForm.controls.explanation">Please enter a poll explanation!</mat-error>
+    </mat-form-field>
+
+
+    <div *ngFor="let question of questions?.controls; let i = index">
+      <app-question-form
+        [index]="i"
+        [questionForm]="question"
+        (deleteQuestionFormEventEmitter)="deleteQuestionForm($event)">
+      </app-question-form>
+      <mat-divider></mat-divider>
+    </div>
+
+    <mat-card-actions align="end">
+    <div class="buttonDiv">
+      <button
+        mat-raised-button
+        color="accent"
+        type="button"
+        (click)="createQuestionForm()">ADD QUESTION
+      </button>
+
+      <button *ngIf="questions.length > 0"
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!pollForm.valid"
+        >SAVE POLL
+      </button>
+    </div>
+    </mat-card-actions>
+
+  </form>
+</mat-card>
+
+<button
+  mat-raised-button
+  color="primary"
+  type="submit"
+  style="float: right"
+  (click)="pollLog()">LOG POLL
+
+</button>

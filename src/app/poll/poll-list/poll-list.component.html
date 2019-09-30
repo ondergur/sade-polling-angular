@@ -1,0 +1,15 @@
+<mat-accordion multi="true" *ngIf="polls.length > 0">
+  <mat-expansion-panel *ngFor="let poll of polls">
+    <mat-expansion-panel-header>
+      {{ poll.name }}
+    </mat-expansion-panel-header>
+    <p>{{ poll.explanation }}</p>
+    <mat-action-row>
+      <a mat-button color="accent" [routerLink]="['/poll', poll.id]">INSPECT</a>
+      <a mat-button color="primary" [routerLink]="['/polledit', poll.id]">EDIT</a>
+      <button color="warn" mat-button>DELETE</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<p class="info mat-body-1" *ngIf="polls.length <= 0">No polls created yet!</p>

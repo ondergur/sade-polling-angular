@@ -1,0 +1,55 @@
+<div *ngIf="poll">
+  <form #answerForm="ngForm">
+    <mat-card>
+
+      <mat-card-title>
+        {{poll.name | uppercase}}
+      </mat-card-title>
+      <mat-card-subtitle>
+        Anket Açıklaması: {{poll.explanation}}
+      </mat-card-subtitle>
+
+
+      <mat-card-content>
+
+        <div *ngFor="let question of poll.questions; index as q_index">
+          <h4>{{question.text}}</h4>
+
+          <div *ngIf="question.type === 0">
+            <mat-radio-group
+            class="radio-group"
+            [(ngModel)]="options[question.id]"
+            value="{{question.id}}-{{option.id}}"
+            name="{{question.id}}">
+              <mat-radio-button *ngFor="let choice of question.test_choices">
+                {{choice.text}}
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <textarea style="width: 100%" *ngIf="question.type === 1"></textarea>
+
+        </div>
+
+      </mat-card-content>
+      <mat-card-actions align="end">
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            >GÖNDER
+          </button>
+      </mat-card-actions>
+
+    </mat-card>
+  </form>
+
+  <button
+  mat-raised-button
+  color="primary"
+  type="submit"
+  style="float: right"
+  (click)="pollLog()">LOG POLL
+
+</button>
+</div>

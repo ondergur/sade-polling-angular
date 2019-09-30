@@ -1,0 +1,23 @@
+<div>
+  <div class="test-header">
+      <h4>Seçeneklerinizi belirleyiniz</h4>
+      <button
+      style="float: right"
+      mat-raised-button
+      color="primary"
+      type="button"
+      (click)="addChoice()">SEÇENEK EKLE
+    </button>
+  </div>
+
+  <div class="test-choices">
+  <div *ngFor="let choice of testChoices?.controls; let i = index">
+    <app-test-choice
+      [index]="i"
+      [testChoice]="choice"
+      (deleteTestChoiceEventEmitter)="deleteTestChoice($event)">
+    </app-test-choice>
+  </div>
+  </div>
+</div>
+

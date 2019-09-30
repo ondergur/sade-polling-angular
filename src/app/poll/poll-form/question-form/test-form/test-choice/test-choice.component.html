@@ -1,0 +1,16 @@
+<mat-form-field [formGroup]=testChoice>
+  <mat-label>Şıkkı doldurunuz</mat-label>
+  <input
+    matInput
+    type="text"
+    name="text"
+    formControlName=text
+    required>
+</mat-form-field>
+<button
+  mat-icon-button
+  type="button"
+  color="warn"
+  (click)="deleteChoice()" >
+  <mat-icon>delete</mat-icon>
+</button>

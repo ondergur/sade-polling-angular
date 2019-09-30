@@ -1,0 +1,37 @@
+<div [formGroup] = "questionForm">
+  <div class="questionHeader">
+    <h4 style="float: left; margin: 9.5px;">Soru {{index + 1}}</h4>
+    <button
+      mat-raised-button
+      color="warn"
+      type="button"
+      style="float: right; vertical-align: middle"
+      (click)="deleteQuestionForm()">DELETE THİS QUESTİON
+    </button>
+  </div>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Sorunuzu yazınız</mat-label>
+    <input
+      matInput
+      type="text"
+      name="text"
+      formControlName=text
+      required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Soru çeşidini seçiniz</mat-label>
+    <mat-select (selectionChange)=setQuestionType($event)>
+      <mat-option value="0">Çoktan Seçmeli</mat-option>
+      <mat-option value="1">Açıklama Kutusu</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div *ngIf="questionType == 0">
+    <app-test-form
+    [testChoices]="testChoices"
+    [questionIndex]="index">
+    </app-test-form>
+  </div>
+</div>

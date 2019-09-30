@@ -1,0 +1,12 @@
+<div>
+  ANKET İSMİ: {{poll.name}}
+  <ul *ngFor="let question of poll.questions">
+    <li>{{question.text}}</li>
+    <ul *ngIf="question.type === 0">
+      <li *ngFor="let choice of question.test_choices">
+        {{choice.text}}
+      </li>
+    </ul>
+  </ul>
+</div>
+
